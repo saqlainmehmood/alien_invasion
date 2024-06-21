@@ -41,6 +41,9 @@ class AlienInvasion:
           # Start alien invasion in an active stat
           self.game_active = True
 
+          # Start alien invasion in an inactive state
+          self.game_active = False
+
      def _create_fleet(self):
           """Create the fleet of aliens"""
         #   spacing between alien is one alien width and one alien hieght
@@ -107,7 +110,7 @@ class AlienInvasion:
                self.ship.update()
                self._update_bullets()
                self._update_aliens()
-               
+
             self._update_screen()
             self.clock.tick(60)
 
