@@ -91,6 +91,7 @@ class AlienInvasion:
                sleep (0.5)
           else:
                self.game_active = False
+               pygame.mouse.set_visible(True)
 
      def _check_fleet_edges(self):
           """Respond appropriately if any alien have reached an edge"""
@@ -175,17 +176,22 @@ class AlienInvasion:
      def _check_play_button(self, mouse_pos):
           """Start the new game when player click play"""
           if self.play_button.rect.collidepoint(mouse_pos):
-               # reset the game statistics
-               self.stats.reset_stats()
-               self.game_active = True
+               button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+               if button_clicked and self.game_active:  
+                    # reset the game statistics
+                    self.stats.reset_stats()
+                    self.game_active = True
 
-               # getting  rid of remaining bullets and aliens 
-               self.bullets.empty()
-               self.alien.empty()
+                    # getting  rid of remaining bullets and aliens 
+                    self.bullets.empty()
+                    self.alien.empty()
 
-               # create a new fleet and center the ship
-               self._create_fleet()
-               self.ship.center_ship()
+                    # create a new fleet and center the ship
+                    self._create_fleet()
+                    self.ship.center_ship()
+
+                    # hide the button
+                    pygame.mouse.set_visible(False)
 
      def _check_keydown_events(self, event):
         #    respond to keypresses
